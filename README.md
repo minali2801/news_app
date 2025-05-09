@@ -72,6 +72,17 @@ The **Flutter News App** is a simple yet powerful news application built using F
    8.custom_refresh_indicator: ^4.0.1
 
 ## APK and Walkthrough Video
-   APK File:
+   APK File:https://drive.google.com/file/d/1Htjjo_lHc6b8ijCIStYi7FmTdliIep9o/view?usp=sharing
+## screnshots
+   ## 📸 Screenshots
+
+### 🔐 Login Screen  
+![Login Screen](screenshots/login_screen.png)
+
+### 📰 News List  
+![News List](screenshots/news_list.png)
+
+### 📄 Article Details  
+![Article Details](screenshots/article_detail.png) etc.....
 
 ## License : MIT License
