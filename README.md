@@ -77,12 +77,12 @@ The **Flutter News App** is a simple yet powerful news application built using F
    ## 📸 Screenshots
 
 ### 🔐 Login Screen  
-![Login Screen](screenshots/login_screen.png)
+![Login Screen](screenshots/loginPage.png)
 
 ### 📰 News List  
-![News List](screenshots/news_list.png)
+![News List](screenshots/newsList.jpg)
 
 ### 📄 Article Details  
-![Article Details](screenshots/article_detail.png) etc.....
+![Article Details](screenshots/webview.jpg) etc.....
 
 ## License : MIT License
