@@ -44,6 +44,7 @@ The **Flutter News App** is a simple yet powerful news application built using F
    flutter pub get
    3.Run the app:
    Connect a device or start an emulator, and run:flutter run
+
 ## Screenshots
    Here are some screenshots of the app:
    1.News Feed Page
@@ -51,6 +52,8 @@ The **Flutter News App** is a simple yet powerful news application built using F
    2.Bookmark Page
 
    3.WebView Page  
+
+   4.Login page
 
 ## Architecture Choices
    State Management: The app uses Provider for managing the state of news articles and bookmarks.

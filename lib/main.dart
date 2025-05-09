@@ -17,47 +17,68 @@ final ThemeData darkTheme = ThemeData(
   primarySwatch: Colors.blue,
   visualDensity: VisualDensity.adaptivePlatformDensity,
 );
+
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  bool isLoggedin = prefs.getBool('isLoggedin') ?? false;
-  runApp(MyApp(isLoggedin: isLoggedin));
+  WidgetsFlutterBinding.ensureInitialized(); 
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  final bool isLoggedin;
-
-  const MyApp({super.key, required this.isLoggedin});
+  const MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
+  bool _isLoggedin = false;
   bool _isDarkMode = false;
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _checkLoginStatus();
+  }
+
+  void _checkLoginStatus() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _isLoggedin = prefs.getBool('isLoggedin') ?? false;
+      _isLoading = false;
+    });
+  }
 
   void _toggleTheme() {
     setState(() {
       _isDarkMode = !_isDarkMode;
     });
   }
-  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
+    if (_isLoading) {
+      return const MaterialApp(
+        home: Scaffold(
+          body: Center(child: CircularProgressIndicator()),
+        ),
+      );
+    }
+
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => NewsProvider()), // NewsProvider
-        ChangeNotifierProvider(
-          create: (_) => BookmarksProvider(),
-        ), // BookmarksProvider
+        ChangeNotifierProvider(create: (_) => NewsProvider()),
+        ChangeNotifierProvider(create: (_) => BookmarksProvider()),
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Flutter News App',
         debugShowCheckedModeBanner: false,
         theme: lightTheme,
         darkTheme: darkTheme,
         themeMode: _isDarkMode ? ThemeMode.dark : ThemeMode.light,
-        home: widget.isLoggedin ? HomePage(toggleTheme: _toggleTheme,) : LoginPage(),
+        home: _isLoggedin
+            ? HomePage(toggleTheme: _toggleTheme)
+            : const LoginPage(),
       ),
     );
   }
